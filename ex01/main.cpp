@@ -55,5 +55,18 @@ int	main(void)
 		std::cout << "Expected error: " << e.what() << std::endl;
 	}
 
+	std::cout << std::endl;
+
+	std::vector<int> values;
+
+	for (int i = 0; i < 10000; i++)
+		values.push_back(i);
+
+	Span big(10000);
+	big.addRange(values.begin(), values.end());
+
+	std::cout << big.shortestSpan() << std::endl;
+	std::cout << big.longestSpan() << std::endl;
+
 	return (0);
 }

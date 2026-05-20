@@ -4,6 +4,7 @@
 # include <vector>
 # include <stdexcept>
 # include <algorithm>
+# include <iterator>
 
 class Span
 {
@@ -16,6 +17,14 @@ class Span
 		void			addNumber(int number);
 		unsigned int	shortestSpan(void) const;
 		unsigned int	longestSpan(void) const;
+
+	template <typename Iterator>
+	void	addRange(Iterator begin, Iterator end)
+	{
+		if (_numbers.size() + std::distance(begin, end) > _maxSize)
+			throw std::runtime_error("Span does not have enough space");
+		_numbers.insert(_numbers.end(), begin, end);
+	}
 
 	private:
 		Span(void);
